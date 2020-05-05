@@ -1,0 +1,12 @@
+env
+set NEW new_variable
+env
+set TERM vt100
+env
+set TERM xterm-256color
+env
+set OLD
+env
+set NEW
+env
+exit
