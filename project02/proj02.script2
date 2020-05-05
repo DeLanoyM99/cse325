@@ -1,0 +1,24 @@
+#!/bin/tcsh -f
+
+# Abhinav Thirupathi
+# Computer Project #2
+
+# Purpose:  Produce a series of reports about the census units in a list of specified county
+# Receive:  Data of the census units
+# Return:   A series of reports about the census units in a list of specified county
+
+
+# For each of the counties listed
+foreach fname ($argv[*]:q)
+
+  # Print the report headers
+  cat project02.headers
+
+  # Search for the specified county, sorts in ascending order by number, else alphabetically
+  grep " | $fname " project02.data | sort -t'|' -k3,3n -k1,1
+
+  # Print two empty lines
+  echo ' '
+  echo ' '
+
+end

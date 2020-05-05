@@ -1,0 +1,55 @@
+#!/bin/tcsh -f
+
+# Abhinav Thirupathi
+# Computer Project #2
+
+# Purpose:  Produce a report about the N census units with the largest population with error checking
+# Receive:  Data of all the census units
+# Return:   A report about the N census units with the largest population
+
+# Checks for two arguments
+if ($#argv != 2) then 
+
+	echo 'Missing needed arguments'
+
+# Checks if the N value (first argument) is greater than 0
+else if ($1 <= 0) then
+	
+	echo 'Value needs to a greater than 0'
+
+else 
+	# If character is 'A', all places will be included
+	if ($2 == 'A') then
+	  
+          # Print out the report headers
+	  cat project02.headers
+
+	   # All places sorted in descending order by number, else alphabetically, and only the top N units will be printed
+	  cat project02.data | sort -t'|' -k3,3nr -k1,1 | head -n $1
+
+	# If character is 'C', only cities will be included
+	else if ($2 == 'C') then
+	      
+
+              # Print out the report headers
+              cat project02.headers
+
+	      # Search for the cities, sorts in descending order by number, else alphabetically, and only the top N units will be printed
+	      grep " city " project02.data | sort -t'|' -k3,3nr -k1,1 | head -n $1
+
+	#If character is 'T', only townships will be included
+	else if ($2 == 'T') then
+
+              # Print out the report headers
+              cat project02.headers
+
+	       # Search for the townships, sorts in descending order by number, else alphabetically, and only the top N units will be printed
+	      grep " township " project02.data | sort -t'|' -k3,3nr -k1,1 | head -n $1
+
+	# If character string is invalid, the report error
+	else
+
+		echo 'Invalid character string'
+	endif
+
+endif

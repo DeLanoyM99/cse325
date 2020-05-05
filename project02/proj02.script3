@@ -1,0 +1,32 @@
+#!/bin/tcsh -f
+
+# Abhinav Thirupathi
+# Computer Project #2
+
+# Purpose:  Produce a report about the N census units with the largest population
+# Receive:  Data of all the census units
+# Return:   A report about the N census units with the largest population
+
+
+# Print out the report headers
+cat project02.headers
+
+# If character is 'A', all places will be included
+if ($2 == 'A') then
+
+        # All places sorted in descending order by number, else alphabetically, and only the top N units will be printed
+  cat project02.data | sort -t'|' -k3,3nr -k1,1 | head -n $1
+
+# If character is 'C', only cities will be included
+else if ($2 == 'C') then
+
+        # Search for the cities, sorts in descending order by number, else alphabetically, and only the top N units will be printed
+      grep " city " project02.data | sort -t'|' -k3,3nr -k1,1 | head -n $1
+
+#If character is 'T', only townships will be included
+else if ($2 == "T") then
+
+        # Search for the townships, sorts in descending order by number, else alphabetically, and only the top N units will be printed
+      grep " township " project02.data | sort -t'|' -k3,3nr -k1,1 | head -n $1
+
+endif

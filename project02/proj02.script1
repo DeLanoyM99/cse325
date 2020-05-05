@@ -1,0 +1,18 @@
+#!/bin/tcsh -f
+
+# Abhinav Thirupathi
+# Computer Project #2
+
+# Purpose:  Produce a report about the census units within a specified county
+# Receive:  Data of the all the census reports
+# Return:   A report of the census units within a specified county
+
+
+# Prints out the report headers
+cat project02.headers
+
+
+# Search for the specified county, sorts in ascending order by number, else alphabetically
+grep " | $1 " project02.data | sort -t'|' -k3,3n -k1,1
+
+
